@@ -15,7 +15,7 @@ WORKDIR /data
 RUN chown treehouse /data
     # chown stands oor change ownership
 
-# change the user of the container from root to new user
+# change the user of the container from root (by default) to new user
 USER treehouse
 
 # commands to create a file wiith the username
