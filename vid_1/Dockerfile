@@ -5,11 +5,25 @@
     # (in this case mongo, which has MongoDB installed)
 FROM mongo
 
+# create user,  and let this new user be the owner of the dir
+RUN useradd treehouse  
+
+# create working dir
+WORKDIR /data
+
+# change owner of dir from root to new user
+RUN chown treehouse /data
+    # chown stands oor change ownership
+
+# change the user of the container from root to new user
+USER treehouse
+
+# commands to create a file wiith the username
+    # since the USER is not root, this line will create an error:permision denied if the chown are not set
+RUN whoami > user.txt
+
 # Define mountable directories.
 VOLUME ["/data/db"]
-
-# Define working directory.
-WORKDIR /data
 
 # Define default command.
     # CMD line specifies a command that will be run when the container starts
